@@ -22,9 +22,22 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-//
-                                .anyRequest().permitAll()
+                        // Public endpoints (no auth needed)
+                        //.requestMatchers("/", "/api/health", "/api/public/**").permitAll()
+
+                        // Auth endpoints (login)
+                        //.requestMatchers("/api/auth/login").permitAll()
+
+                        // Admin only endpoints
+                       // .requestMatchers("/api/admin/**").hasRole("ADMIN")
+
+                        // Teacher endpoints (teachers and admin can access)
+                       // .requestMatchers("/api/teacher/**").hasAnyRole("TEACHER", "ADMIN")
+
+                        // Everything else needs authentication
+                        .anyRequest().permitAll()
                 );
 
         return http.build();

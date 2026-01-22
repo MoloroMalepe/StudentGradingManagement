@@ -67,9 +67,9 @@ public class UserService {
     public void createInitialAdmin() {
         if (!userRepository.existsByUsername("admin")) {
             User admin = new User();
-            admin.setUsername("admin");
-            admin.setPassword("admin123"); // Plain text TEMPORARILY
-            admin.setEmail("admin@school.edu");
+            admin.setUsername("admin2");
+            admin.setPassword("admin1234"); // Plain text TEMPORARILY
+            admin.setEmail("admin@school.eddu");
             admin.setRole("ADMIN");
             admin.setCreatedBy("SYSTEM");
             admin.setCreatedAt(LocalDateTime.now());
